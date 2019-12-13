@@ -59,18 +59,18 @@
             </table>
 
             <div class="row text-center">
-                <ul class="pagination pagination-sm">
-                    <li class="page-item first disabled"><a href="#" class="page-link">首页</a></li>
+                <ul class="pagination pagination-sm" id="pageBox">
+                    <!-- <li class="page-item first disabled"><a href="#" class="page-link">首页</a></li>
                     <li class="page-item prev disabled"><a href="#" class="page-link">上一页</a></li>
-                    <!-- <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
                     <li class="page-item"><a href="#" class="page-link">2</a></li>
                     <li class="page-item"><a href="#" class="page-link">3</a></li>
                     <li class="page-item"><a href="#" class="page-link">4</a></li>
                     <li class="page-item"><a href="#" class="page-link">5</a></li>
                     <li class="page-item"><a href="#" class="page-link">6</a></li>
-                    <li class="page-item"><a href="#" class="page-link">7</a></li> -->
+                    <li class="page-item"><a href="#" class="page-link">7</a></li>
                     <li class="page-item next"><a href="#" class="page-link">下一页</a></li>
-                    <li class="page-item last"><a href="#" class="page-link">尾页</a></li>
+                    <li class="page-item last"><a href="#" class="page-link">尾页</a></li> -->
                 </ul>
             </div>
 
@@ -109,10 +109,15 @@
 
     <!-- 分页模版 -->
     <script type="text/html" id="pageTpl">
+        <li class="page-item first "><a href="#" class="page-link" onclick="changePage({{1}})">首页</a></li>
+        <li class="page-item prev "><a href="#" class="page-link" onclick="changePage({{currentPage-1}})">上一页</a></li>
         {{each data}}
-        <li class="page-item"><a href="#" class="page-link">{{$value.</a></li>
+                                                                                       
+        <li class="page-item"><a href="#" class="page-link" onclick="changePage({{$value}})">{{$value}}</a></li>
         {{/each}}
-    
+        <li class="page-item next"><a href="#" class="page-link" onclick="changePage({{currentPage-0+1}})">下一页</a></li>
+        <li class="page-item last"><a href="#" class="page-link" onclick="changePage({{37}})">尾页</a></li>
+
     </script>
 </body>
 
