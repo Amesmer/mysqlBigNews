@@ -25,6 +25,7 @@ $.ajax({
     }
 });
 
+
 // 封装函数，实现分页
 function changePage(page) {
     console.log(page+"---------------");
@@ -38,9 +39,8 @@ function changePage(page) {
         },
         success: function (response) {
             console.log(response);
-            response.data.data.currentPage=page;
             response.data.data.pages=response.data.totalPage;
-            console.log(page);
+            // console.log(page);
             var html = template('listTpl', {
                 data: response.data.data
             });
