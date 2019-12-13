@@ -18,8 +18,8 @@
     <div class="common_title">
       文章编辑
     </div>
-    <div class="container-fluid common_con">
-      <form class="form-horizontal article_form">
+    <div class="container-fluid common_con" id="parentBox">
+      <form class="form-horizontal article_form" id="userForm" data-id={{data.id}}>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">文章标题：</label>
           <div class="col-sm-10">
@@ -29,19 +29,15 @@
         <div class="form-group">
           <label for="inputPassword3" class="col-sm-2 control-label">文章封面：</label>
           <div class="col-sm-10">
-            <img src="images/pic06.jpg" class="article_cover">
+            <img src="images/pic06.jpg" class="article_cover" id="preview">
             <input name="cover" type="file" id="exampleInputFile">
           </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">文章类别：</label>
           <div class="col-sm-4">
-            <select class="form-control category" name="categoryId">
-              <option>类别一</option>
-              <option>类别二</option>
-              <option>类别三</option>
-              <option selected>类别四</option>
-              <option>类别五</option>
+            <select class="form-control category" name="categoryId" id="categoryId">
+
             </select>
           </div>
         </div>
@@ -52,7 +48,8 @@
             <div class="input-group">
               <input type="text" name="date" class="form-control" value="2019-05-17" id="dateinput">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button" onclick="jeDate('#dateinput',{trigger:false,format: 'YYYY-MM-DD'})"><i
+                <button class="btn btn-default" type="button"
+                  onclick="jeDate('#dateinput',{trigger:false,format: 'YYYY-MM-DD'})"><i
                     class="iconfont icon-icondate"></i></button>
               </span>
             </div>
@@ -61,7 +58,7 @@
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">文章内容：</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="rich_content" placeholder="文章内容" value="文章内容">
+            <input type="text" class="form-control" id="rich_content" name="content" placeholder="文章内容" value="文章内容">
           </div>
         </div>
         <div class="form-group">
@@ -72,6 +69,14 @@
       </form>
     </div>
   </div>
+  <script type="text/html" id="modifyTpl">
+    {{each data}}
+    <option value="{{$value.id}}" {{categoryId == $value.id ? "selected" : ""}} >{{$value.name}}</option>
+  {{/each}}
+  
+  </script>
+
+
 
   <script src="js/jquery-1.12.4.min.js"></script>
   <script src="js/jedate/js/jedate.js"></script>
@@ -81,7 +86,87 @@
 
   <!-- 业务逻辑代码 -->
   <script>
-    
+    // 调用函数，获取浏览器地址栏中的id参数
+    var id = getUrlParams('id');
+    console.log(id);
+    function getUrlParams(name) {
+      var paramsAry = location.search.substr(1).split('&');
+      // 循环数据
+      for (var i = 0; i < paramsAry.length; i++) {
+        var tmp = paramsAry[i].split('=');
+        if (tmp[0] == name) {
+          return tmp[1];
+        }
+      }
+      // 参数不存在，则返回-1
+      return -1;
+    }
+
+    //给文件控件注册事件
+    $('#exampleInputFile').on('change', function () {
+      var file = this.files[0];
+      var imgURL = URL.createObjectURL(file)
+      $('#preview').prop('src', imgURL)
+    })
+
+    if (id != -1) {
+
+      //发送ajax请求获取文章的详细信息
+      $.ajax({
+        type: 'get',
+        url: 'http://localhost:8080/api/v1/admin/article/search',
+        data: {
+          id: id,
+        },
+        success: function (response) {
+          console.log(response);
+          console.log(response.data.title);
+          console.log($('#userForm input[name="title"]'));
+          $.ajax({
+            type: 'get',
+            url: 'http://localhost:8080/api/v1/admin/category/list',
+            success: function (categories) {
+              console.log(categories);
+
+              console.log(response)
+              $('#userForm input[name="title"]').val(response.data.title)
+              $('#preview').prop('src', response.data.cover)
+              $('#userForm input[name="type"]').val(response.data.type)
+              $('#userForm input[name="date"]').val(response.data.date)
+              $('#userForm input[name="content"]').val(response.data.content)
+              var html = template('modifyTpl', { data: categories.data, categoryId });
+              $('#categoryId').append(html);
+
+            }
+
+          })
+
+        }
+      })
+    }
+
+  
+    // 当修改文章信息表单发生提交行为的时候
+    $('#parentBox').on('submit', '#userForm', function () {
+      alert('ok')
+      // 	// 获取管理员在表单中输入的内容
+      var formData = $(this).serialize()
+      console.log(formData);
+      console.log(id);
+      $.ajax({
+        type: 'get',
+        url: 'http://localhost:8080/api/v1/admin/article/edit',
+        data: formData,
+        success: function (response) {
+        
+          console.log(response);
+          
+        }
+      })
+      // 	// 阻止表单默认提交行为
+      return false;
+    });
+
   </script>
 </body>
 
