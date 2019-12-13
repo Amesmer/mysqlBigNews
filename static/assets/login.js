@@ -20,15 +20,3 @@ $('#loginForm').on('submit',function(){
 })
 
 
-//text
-$.ajax({
-    type: 'get',
-    url: 'http://localhost:8080/api/v1/admin/article/query',
-    data:{
-        page:1
-    },
-    success:function(response){
-        console.log(response);
-        
-    }
-})
