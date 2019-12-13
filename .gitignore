@@ -1,4 +1,5 @@
 # 忽略上传的文件
 node_modules/*
-
+uploads/*
+db/*
 
