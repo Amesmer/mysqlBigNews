@@ -7,7 +7,7 @@ $.ajax({
 
         var hotTpl = `
         {{each data}}
-        <li><span class="first">1</span><a href="#">{{$value.title}}</a></li>
+        <li><span class="{{$index==0 ? 'first' : ''}}{{$index==1?'second':''}}{{$index==2?'third':''}}">{{$index+1}}</span><a href="#">{{$value.title}}</a></li>
         {{/each}}
         `;
         var html = template.render(hotTpl, { data: response.data });
@@ -108,5 +108,5 @@ function logDate(data){
         }
     })
 }
-logDate()
+
 
