@@ -63,7 +63,18 @@ $('.search_btn').on('click', function () {
     // 获取input框的val值
     var keys = $('.search_txt').val();
     // console.log(keys);
-    location.href='/search.html?key='+keys;
+    location.href = '/search.html?key=' + keys;
+
+});
+// 给搜索框注册键盘事件
+$('#search_txt').on('keyup', function (event) {
+    if (event.keyCode == 13) {
+        // 获取input框的val值
+        var keys = $('.search_txt').val();
+        // console.log(keys);
+        location.href = '/search.html?key=' + keys;
+
+    }
 
 });
 
@@ -86,9 +97,9 @@ function getUrlParams(name) {
 
 // 发送请求，获取分类
 $.ajax({
-    type:'get',
-    url:'http://localhost:8080/api/v1/index/category',
-    success:function(response){
+    type: 'get',
+    url: 'http://localhost:8080/api/v1/index/category',
+    success: function (response) {
         // console.log(response);
         var level_twoTpl = `
         {{each data}}
@@ -105,7 +116,7 @@ $.ajax({
         `;
         var html = template.render(left_menuTpl, { data: response.data });
         $('#left_menu').html(html);
-        
+
     }
 })
 
