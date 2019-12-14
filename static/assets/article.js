@@ -28,7 +28,7 @@ $.ajax({
     }
 });
 
-//评论展示
+//评论展示项
 $.ajax({
     type:'get',
     url:'http://localhost:8080/api/v1/index/get_comment',
