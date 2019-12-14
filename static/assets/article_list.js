@@ -41,7 +41,7 @@ function changePage(page) {
             page: page
         },
         success: function (response) {
-            console.log(response);
+            // console.log(response);
             response.data.data.pages=response.data.totalPage;
             // console.log(page);
             var html = template('listTpl', {
