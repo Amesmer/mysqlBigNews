@@ -27,7 +27,7 @@ $.ajax({
         {{each data}}
         <li>
             <span>{{$value.author.substr(0,1)}}</span>
-            <b><em>{{$value.author}}</em>9个月前({{$value.date.substr(5)}})说:</b>
+            <b><em>{{$value.author}}</em>4个月前({{$value.date.substr(5)}})说:</b>
             <strong>{{$value.intro}}</strong>
          </li>
         {{/each}}
@@ -61,7 +61,7 @@ $('.search_btn').on('click', function () {
     // 获取input框的val值
     var keys = $('.search_txt').val();
     // console.log(keys);
-    // location.href='/search.html?key='+keys;
+    location.href='/search.html?key='+keys;
     // $.ajax({
     //     type:'get',
     //     url:'http://localhost:8080/api/v1/index/search',
@@ -75,20 +75,6 @@ $('.search_btn').on('click', function () {
     // })
 
 });
-
-
-// 封装函数，计算时间
-function logDate(data){
-    // 发送请求，获取评论时间
-    $.ajax({
-        type: 'get',
-        url: 'http://localhost:8080/api/v1/index/latest_comment',
-        success:function(response){
-           // console.log(response.data.date);
-            
-        }
-    })
-}
 
 
 
@@ -107,7 +93,30 @@ function getUrlParams(name) {
 }
 
 
+// 发送请求，获取分类
+$.ajax({
+    type:'get',
+    url:'http://localhost:8080/api/v1/index/category',
+    success:function(response){
+        // console.log(response);
+        var level_twoTpl = `
+        {{each data}}
+        <li><a href="/list.html">{{$value.name}}</a></li>
+        {{/each}}
+        `;
+        var html = template.render(level_twoTpl, { data: response.data });
+        $('#level_two').html(html);
 
+        var left_menuTpl = `
+        {{each data}}
+        <li><a href="/list.html">{{$value.name}}</a></li>
+        {{/each}}
+        `;
+        var html = template.render(left_menuTpl, { data: response.data });
+        $('#left_menu').html(html);
+        
+    }
+})
 
 
 
