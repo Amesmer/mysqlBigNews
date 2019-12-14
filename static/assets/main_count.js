@@ -13,6 +13,8 @@ $.ajax({
 })
 
 
+
+
 // 16进制随机颜色
 function getRandomColor() {
    var color = Math.floor(Math.random() * (0xffffff - 0 + 1)) + 0;
