@@ -12,7 +12,7 @@ function getUrlParams(name) {
     }
     return -1;
 }
-// 文章详情
+// 文章详情类
 $.ajax({
     type: 'get',
     url: 'http://localhost:8080/api/v1/index/article',
