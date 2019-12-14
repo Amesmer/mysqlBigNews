@@ -62,7 +62,7 @@ $("#commentBox").on("click", ".anniu", function () {
                 data: {
                     id: id,
                 },
-                url: 'http://localhost:8080/api/v1/admin/comment/reject',
+                url: 'http://localhost:8080/api/v1/admin/comment/pass',
                 success: function (response) {
                     // console.log(response)
                     if (response.code == 200) {
@@ -76,7 +76,8 @@ $("#commentBox").on("click", ".anniu", function () {
                 data: {
                     id: id
                 },
-                url: 'http://localhost:8080/api/v1/admin/comment/pass',
+                
+                url: 'http://localhost:8080/api/v1/admin/comment/reject',
                 success: function (response) {
                     if (response.code == 200) {
                         location.reload();
