@@ -7,7 +7,9 @@ $.ajax({
 
         var hotTpl = `
         {{each data}}
-        <li><span class="{{$index==0 ? 'first' : ''}}{{$index==1?'second':''}}{{$index==2?'third':''}}">{{$index+1}}</span><a href="#">{{$value.title}}</a></li>
+        <li><span class="{{$index==0 ? 'first' : ''}}{{$index==1?'second':''}}
+        {{$index==2?'third':''}}">{{$index+1}}</span>
+        <a href="/article.html?id={{$value.id}}">{{$value.title}}</a></li>
         {{/each}}
         `;
         var html = template.render(hotTpl, { data: response.data });
@@ -46,7 +48,7 @@ $.ajax({
         // console.log(response);
         var focusTpl = `
         {{each data}}
-        <li><a href="#">{{$value.intro}}</a></li>
+        <li><a href="/article.html?id={{$value.id}}">{{$value.intro}}</a></li>
         {{/each}}
         `;
         var html = template.render(focusTpl, { data: response.data });
@@ -62,17 +64,6 @@ $('.search_btn').on('click', function () {
     var keys = $('.search_txt').val();
     // console.log(keys);
     location.href='/search.html?key='+keys;
-    // $.ajax({
-    //     type:'get',
-    //     url:'http://localhost:8080/api/v1/index/search',
-    //     data:{
-    //         key:keys
-    //     },
-    //     success:function(){
-    //         location.href="/search.html?key="+keys
-    //     }
-
-    // })
 
 });
 
@@ -101,7 +92,7 @@ $.ajax({
         // console.log(response);
         var level_twoTpl = `
         {{each data}}
-        <li><a href="/list.html">{{$value.name}}</a></li>
+        <li><a href="/list.htmlx " data-id={{$value.id}}>{{$value.name}}</a></li>
         {{/each}}
         `;
         var html = template.render(level_twoTpl, { data: response.data });
@@ -109,7 +100,7 @@ $.ajax({
 
         var left_menuTpl = `
         {{each data}}
-        <li><a href="/list.html">{{$value.name}}</a></li>
+        <li><a href="/list.html" data-id={{$value.id}}>{{$value.name}}</a></li>
         {{/each}}
         `;
         var html = template.render(left_menuTpl, { data: response.data });
