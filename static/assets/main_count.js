@@ -34,7 +34,7 @@ $.ajax({
          type: 'get',
          url: 'http://localhost:8080/api/v1/admin/data/visit',
          success: function (rep_visit) {
-            // console.log(rep_visit);
+            console.log(rep_visit);
             // console.log(rep_category);
 
 
