@@ -110,12 +110,12 @@
     <!-- 分页模版 -->
     <script type="text/html" id="pageTpl">
         <li class="page-item first "><a href="#" class="page-link" onclick="changePage({{1}})">首页</a></li>
-        <li class="page-item prev "><a href="#" class="page-link" onclick="changePage({{currentPage-1}})">上一页</a></li>
+        <li class="page-item prev "><a href="#" class="page-link" onclick="changePage({{page-1}})">上一页</a></li>
         {{each data}}
                                                                                        
         <li class="page-item"><a href="#" class="page-link" onclick="changePage({{$value}})">{{$value}}</a></li>
         {{/each}}
-        <li class="page-item next"><a href="#" class="page-link" onclick="changePage({{currentPage-0+1}})">下一页</a></li>
+        <li class="page-item next"><a href="#" class="page-link" onclick="changePage({{page-0+1}})">下一页</a></li>
         <li class="page-item last"><a href="#" class="page-link" onclick="changePage({{37}})">尾页</a></li>
 
     </script>
