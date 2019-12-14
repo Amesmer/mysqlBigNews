@@ -8,28 +8,31 @@ $.ajax({
         var html = template('listTpl', {
             data: response.data.data
         });
-        // console.log(html);
         $('#listBox').html(html);
 
-        var pageArr = [];
-        for (var i = 1; i <= response.data.totalPage; i++) {
-            pageArr.push(i)
-        };
-        // console.log(pageArr);
-        var page = template('pageTpl', {
-            data: pageArr
-        });
-        $('#pageBox').html(page);
-
-
+//总页数
+   var total_pages=response.data.totalPage;
+   
+    changePage(1);
+    $(".pagination").twbsPagination({
+        totalPages: total_pages,
+        visiblePages:5,
+        startPage:1,
+        first:"首页",
+        last:"页尾",
+        prev:"上一页",
+        next:"下一页",
+        onPageClick: function (e,page) {
+            changePage(page);
+        }
+    })
     }
 });
 
 
 // 封装函数，实现分页
 function changePage(page) {
-    console.log(page+"---------------");
-    
+
     // 发送请求，获取文章列表数据
     $.ajax({
         type: 'get',
@@ -45,8 +48,10 @@ function changePage(page) {
                 data: response.data.data
             });
             $('#listBox').html(html);
-            console.log(response);
-
+            
         }
     })
 }
+
+
+
