@@ -12,8 +12,8 @@ $.ajax({
    }
 })
 
-// 
-// 
+
+
 
 // 16进制随机颜色
 function getRandomColor() {
