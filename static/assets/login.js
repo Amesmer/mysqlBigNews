@@ -28,7 +28,7 @@ $.ajax({
         page:1
     },
     success:function(response){
-        console.log(response);
+        // console.log(response);
         
     }
 })

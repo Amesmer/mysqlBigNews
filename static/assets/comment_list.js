@@ -2,7 +2,7 @@ $.ajax({
     type: 'get',
     url: 'http://localhost:8080/api/v1/admin/comment/search',
     success: function (response) {
-        console.log(response)
+        // console.log(response)
         var html = template("commentTpl", response);
         // console.log(html)
         $("#commentBox").html(html);
@@ -29,7 +29,7 @@ $("#commentBox").on("click", ".anniu", function () {
                 },
              url: 'http://localhost:8080/api/v1/admin/comment/reject',
                 success: function (response) {
-                    console.log(response)
+                    // console.log(response)
                     if(response.code==200){
                         // location.reload();
                     }  

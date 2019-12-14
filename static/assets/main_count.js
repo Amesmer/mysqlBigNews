@@ -33,8 +33,8 @@ $.ajax({
          type: 'get',
          url: 'http://localhost:8080/api/v1/admin/data/visit',
          success: function (rep_visit) {
-            console.log(rep_visit);
-            console.log(rep_category);
+            // console.log(rep_visit);
+            // console.log(rep_category);
 
 
             //文章类型数据处理   分类name value 数据
@@ -56,9 +56,9 @@ $.ajax({
                category_color.push((getRandomColor)())
             }
 
-            console.log(category_color);
-            console.log(category_data);
-            console.log(category_type);
+            // console.log(category_color);
+            // console.log(category_data);
+            // console.log(category_type);
 
                      //--------------------------------文章访问量
                      //日期份数组
@@ -105,7 +105,7 @@ $.ajax({
                         arr_series.push(obj_series)
                       }
                      
-                     console.log(arr_series);
+                     // console.log(arr_series);
                      
 //-----------------------------------------------------------
             //----------------------------------------------------2图
