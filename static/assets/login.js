@@ -19,6 +19,7 @@ $('#loginForm').on('submit',function(){
  return false;
 })
 
+<<<<<<< HEAD
 
 //text
 $.ajax({
@@ -32,3 +33,5 @@ $.ajax({
         
     }
 })
+=======
+>>>>>>> a3beedb3e6f08a14d69ceac591faff727a08edad

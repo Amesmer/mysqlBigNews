@@ -147,6 +147,7 @@ $.ajax({
 });
 
 
+<<<<<<< HEAD
 // 为筛选表单注册提交事件
 $('#selectForm').on('submit', function () {
     // alert('ok')
@@ -154,14 +155,26 @@ $('#selectForm').on('submit', function () {
     var formData = $(this).serialize();
     console.log(formData);
     // 发送请求
+=======
+// 封装函数，实现分页
+function changePage(page) {
+    console.log(page+"---------------");
+    
+    // 发送请求，获取文章列表数据
+>>>>>>> a3beedb3e6f08a14d69ceac591faff727a08edad
     $.ajax({
         type: 'get',
         url: 'http://localhost:8080/api/v1/admin/article/query',
         data: formData,
         success: function (response) {
             console.log(response);
+<<<<<<< HEAD
 
             // 拼接文章列表字符串
+=======
+            response.data.data.pages=response.data.totalPage;
+            // console.log(page);
+>>>>>>> a3beedb3e6f08a14d69ceac591faff727a08edad
             var html = template('listTpl', {
                 data: response.data
             });
