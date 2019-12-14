@@ -11,7 +11,7 @@ $.ajax({
     typr: 'get',
     url: 'http://localhost:8080/api/v1/admin/user/detail',
     success: function (rep) {
-        console.log(rep);
+        // console.log(rep);
         $('.a1').html(rep.data.username);
         $('.a2').val(rep.data.nickname);
         $('.a3').val(rep.data.email);
