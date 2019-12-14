@@ -12,14 +12,54 @@ function getUrlParams(name) {
     }
     return -1;
 }
-
+// 文章详情
 $.ajax({
-    type:'get',
-    data:{
-        id:getUrlParams("id")
+    type: 'get',
+    url: 'http://localhost:8080/api/v1/index/article',
+    data: {
+        id: getUrlParams("id")
     },
-    url:'/index/artitle',
-    success:function(response){
-        console.log(response)
+    success: function (response) {
+        // console.log(response)l
+        var html = template("articleTpl", response);
+        // console.log(html)
+        $("#mainBox").html(html)
+
     }
 });
+
+//评论展示
+$.ajax({
+    type:'get',
+    url:'http://localhost:8080/api/v1/index/get_comment',
+    data:{
+        articleId:getUrlParams("id")
+    },
+    success:function(response){
+        console.log(response)
+        var html=template("tBox",response);
+        // console.log(html)
+        $("#commentBox").html(html)
+    }
+})
+
+
+// 发表评论
+$("#Formaction").on("click","#Plan" ,function () {
+    var author = $(".comment_name").val();
+    var content = $(".comment_input").val();
+    $.ajax({
+        type: 'post',
+        url: 'http://localhost:8080/api/v1/index/post_comment',
+        data: {
+            author: author,
+            content: content,
+            articleId:  getUrlParams("id"),
+        },
+        success: function (response) {
+           location.reload()
+        }
+    });
+    return false
+})
+

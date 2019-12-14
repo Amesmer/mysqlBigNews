@@ -20,19 +20,16 @@
         <div class="container-fluid common_con">
             <div class="row opt_btns">
                 <div class="col-xs-6">
-                    <form class="form-inline">
-                        <select id="selCategory" name="" class="form-control input-sm">
-              <option value="">所有分类</option>
-              <option>未分类</option>
-              <option>奇趣事</option>
-              <option>会生活</option>
-              <option>爱旅行</option>
-            </select>
-                        <select id="selStatus" name="" class="form-control input-sm">
-              <option value="">所有状态</option>
-              <option value="草稿">草稿</option>
-              <option value="已发布">已发布</option>
-            </select>
+                    <form class="form-inline" id="selectForm">
+                        <select id="selCategory" name="type" class="form-control input-sm">
+                            
+
+                        </select>
+                        <select id="selStatus" name="state" class="form-control input-sm">
+                            <option value="-1">所有状态</option>
+                            <option value="草稿">草稿</option>
+                            <option value="已发布">已发布</option>
+                        </select>
                         <button id="btnSearch" class="btn btn-default btn-sm">筛选</button>
                     </form>
                 </div>
@@ -58,19 +55,12 @@
                 </tbody>
             </table>
 
-            <div class="row text-center">
+            <div class="row text-center" id="page_container">
                 <ul class="pagination pagination-sm" id="pageBox">
-                    <!-- <li class="page-item first disabled"><a href="#" class="page-link">首页</a></li>
-                    <li class="page-item prev disabled"><a href="#" class="page-link">上一页</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">6</a></li>
-                    <li class="page-item"><a href="#" class="page-link">7</a></li>
-                    <li class="page-item next"><a href="#" class="page-link">下一页</a></li>
-                    <li class="page-item last"><a href="#" class="page-link">尾页</a></li> -->
+
+
+
+                    
                 </ul>
             </div>
 
@@ -78,12 +68,13 @@
     </div>
 
     <script src="js/jquery-1.12.4.min.js"></script>
-    <script src="./js/template-web.js"></script>
+    
     <script src="./js/jquery.twbsPagination.js"></script>
-    <script src="../assets/article_list.js"></script>
+  
+    <script src="../js/jquery.pagination.min.js"></script>
     <script>
         // 设置左侧菜单
-        $('#release_btn').click(function() {
+        $('#release_btn').click(function () {
             window.parent.setMenu(1, 1);
         })
     </script>
@@ -99,26 +90,38 @@
             <td class="text-center">{{$value.date}}</td>
             <td class="text-center">{{$value.state}}</td>
             <td class="text-center">
-                <a href="article_edit.html?id={{$value.id}}" class="btn btn-default btn-xs">编辑</a>
-                <a href="javascript:deleteTr( 1005 );" class="btn btn-danger btn-xs">删除</a>
+                <a href="article_edit.html?id={{$value.id}}" class="btn btn-default btn-xs" >编辑</a>
+                <a href="javascript:deleteTr( 1005 );" class="btn btn-danger btn-xs delete" data-id={{$value.id}}>删除</a>
             </td>
         </tr>
         {{/each}}
     </script>
 
 
+<<<<<<< HEAD
+ 
+=======
     <!-- 分页模版 -->
-    <script type="text/html" id="pageTpl">
-        <li class="page-item first "><a href="#" class="page-link" onclick="changePage({{1}})">首页</a></li>
-        <li class="page-item prev "><a href="#" class="page-link" onclick="changePage({{page-1}})">上一页</a></li>
-        {{each data}}
-                                                                                       
-        <li class="page-item"><a href="#" class="page-link" onclick="changePage({{$value}})">{{$value}}</a></li>
+    <!-- <script type="text/html" id="pageTpl">
+        <li class="page-item first "><a href="javascript:;" class="page-link" onclick="onPageClick({{1}})">首页</a></li>
+        <li class="page-item prev "><a href="javascript:;" class="page-link" onclick="onPageClick({{page-1}})" >上一页</a></li>
+        {{each data}}                                                                                      
+        <li class="page-item"><a href="javascript:;" class="page-link" onclick="onPageClick({{$value}})" >{{$value}}</a></li>
         {{/each}}
-        <li class="page-item next"><a href="#" class="page-link" onclick="changePage({{page-0+1}})">下一页</a></li>
-        <li class="page-item last"><a href="#" class="page-link" onclick="changePage({{37}})">尾页</a></li>
-
+        <li class="page-item next"><a href="javascript:;" class="page-link" onclick="onPageClick({{page-0+1}})">下一页</a></li>
+        <li class="page-item last"><a href="javascript:;" class="page-link" onclick="onPageClick({{37}})">尾页</a></li>
+    </script> -->
+>>>>>>> e3b2d13a9e0db72882f1cee0b6779fddd280ecde
+    <!-- 分类列表模版 -->
+    <script type="text/html" id="classifyTpl">
+        <option value="-1">所有分类</option>
+        {{each data}}
+        <option value="{{$value.id}}"}>{{$value.name}}</option>
+        {{/each}}
     </script>
+
+    <script src="js/template-web.js"></script>
+    <script src="../assets/article_list.js"></script>
 </body>
 
 </html>

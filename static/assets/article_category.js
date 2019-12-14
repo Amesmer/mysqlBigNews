@@ -15,6 +15,7 @@ $('#slugForm').on('submit', function () {
     return false;
 })
 
+// ...
 //分类列表展示
 
 $.ajax({

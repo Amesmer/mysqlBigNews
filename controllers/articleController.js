@@ -367,8 +367,8 @@ module.exports = {
         data: {
           totalCount: totalArticleRes.length,
           totalPage: Math.ceil(totalArticleRes.length / perpage),
+          data: pageArticleRes, 
           page:page,
-          data: pageArticleRes
         }
       });
     } catch (error) {

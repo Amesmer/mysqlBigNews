@@ -1,5 +1,5 @@
 module.exports ={
-    // 库名
+     // 库名
     database:'bignews',
     // 用户名
     username:'root',
