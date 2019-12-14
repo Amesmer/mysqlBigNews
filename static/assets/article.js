@@ -20,7 +20,7 @@ $.ajax({
         id: getUrlParams("id")
     },
     success: function (response) {
-        // console.log(response)l
+        console.log(response)
         var html = template("articleTpl", response);
         // console.log(html)
         $("#mainBox").html(html)
