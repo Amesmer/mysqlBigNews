@@ -43,7 +43,6 @@ function changePage(page) {
         success: function (response) {
             // console.log(response);
             response.data.data.pages=response.data.totalPage;
-            // console.log(page);
             var html = template('listTpl', {
                 data: response.data.data
             });

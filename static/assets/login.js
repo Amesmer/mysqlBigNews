@@ -18,20 +18,3 @@ $('#loginForm').on('submit',function(){
  })
  return false;
 })
-
-<<<<<<< HEAD
-
-//text
-$.ajax({
-    type: 'get',
-    url: 'http://localhost:8080/api/v1/admin/article/query',
-    data:{
-        page:1
-    },
-    success:function(response){
-        // console.log(response);
-        
-    }
-})
-=======
->>>>>>> a3beedb3e6f08a14d69ceac591faff727a08edad
