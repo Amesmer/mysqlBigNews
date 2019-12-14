@@ -95,10 +95,6 @@ $.ajax({
 
 // 给筛选表单注册提交事件
 $('#selectForm').on('submit', function () {
-    // alert('ok')
-    // 一键获取表单项信息
-    // var data = $(this).serialize();
-    // console.log(data);
     //判断val值
     var arr = [];
     if ($('#selCategory').val() != -1) {
@@ -107,14 +103,14 @@ $('#selectForm').on('submit', function () {
     if ($('#selStatus').val() != -1) {
         arr.push('state=' + $('#selStatus').val());
     }
-    console.log(arr.join('&'));
+    // console.log(arr.join('&'));
   // 发送请求
   $.ajax({
     type: 'get',
     url: 'http://localhost:8080/api/v1/admin/article/query',
     data: arr.join('&'),
     success: function (response) {
-        console.log(response);
+        // console.log(response);
       
         // 拼接文章列表字符串
         var html = template('listTpl', {
@@ -142,8 +138,7 @@ $('#selectForm').on('submit', function () {
         })
     }
 })
-// 阻止表单跳转
-
+    // 阻止表单跳转
     return false;
 })
 

@@ -10,7 +10,7 @@
          key:key
      },
      success: function (response) {
-         console.log(response.data);
+        //  console.log(response);
          var html = template('listSearchTpl', { data: response.data.data });
          console.log(html);
          
