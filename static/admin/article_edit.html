@@ -111,7 +111,6 @@
     })
 
     if (id != -1) {
-
       //发送ajax请求获取文章的详细信息
       $.ajax({
         type: 'get',
@@ -135,9 +134,7 @@
               $('#userForm input[name="content"]').val(response.data.content)
               var html = template('modifyTpl', { data: categories.data, categoryId });
               $('#categoryId').append(html);
-
             }
-
           })
 
         }
@@ -147,7 +144,7 @@
 
     // 当修改文章信息表单发生提交行为的时候
     $('#userForm').on('submit', function () {
-      alert('ok')
+      //alert('ok')
       // 	// 获取管理员在表单中输入的内容
       var formData = new FormData(this);
       formData.set('id', id);
@@ -172,6 +169,7 @@
         contentType: false,
         success: function (response) {
           console.log(response);
+          location.href='/admin/article_list.html';
         }
       })
       // 	// 阻止表单默认提交行为
