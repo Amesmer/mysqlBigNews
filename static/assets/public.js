@@ -61,7 +61,7 @@ $('.search_btn').on('click', function () {
     // 获取input框的val值
     var keys = $('.search_txt').val();
     // console.log(keys);
-    // location.href='/search.html?key='+keys;
+    location.href='/search.html?key='+keys;
     // $.ajax({
     //     type:'get',
     //     url:'http://localhost:8080/api/v1/index/search',
