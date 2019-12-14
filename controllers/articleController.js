@@ -367,6 +367,7 @@ module.exports = {
         data: {
           totalCount: totalArticleRes.length,
           totalPage: Math.ceil(totalArticleRes.length / perpage),
+          page:page,
           data: pageArticleRes
         }
       });

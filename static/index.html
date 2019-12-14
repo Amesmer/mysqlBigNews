@@ -53,8 +53,8 @@
     </div>
   </div>
 
-  <div class="main_con clearfix">
-    <div class="left_con">
+  <div class="main_con clearfix" >
+    <div class="left_con" >
       <ul class="focus_list">
         <li class="first">
           <a href="#"><img src="images/pic01.jpg" alt=""></a>
@@ -78,12 +78,13 @@
         </li>
       </ul>
 
-      <div class="common_title">
+      <div class="common_title" >
         <h3><i class="fa fa-edit"></i> 最新资讯</h3>
         <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
       </div>
-
-      <div class="common_news_list">
+      <div id="lastedBox">
+        
+      <!-- <div class="common_news_list" id="lastedBox">
         <a href="#" class="list_pic"><img src="images/pic09.jpg" alt=""></a>
         <h4><a href="#">亚马逊金融试水中国？背后却是和华尔街的“金融战争” </a></h4>
         <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
@@ -92,8 +93,8 @@
           <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( 5
             )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
           <b>发布于 2018-08-30 12:18:58</b>
-        </div>
-      </div>
+        </div> 
+      </div> 
 
       <div class="common_news_list">
         <a href="#" class="list_pic"><img src="images/pic03.jpg" alt=""></a>
@@ -141,6 +142,8 @@
             )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
           <b>发布于 2018-08-30 12:18:58</b>
         </div>
+      </div>  -->
+
       </div>
 
     </div>
@@ -223,7 +226,24 @@
 
   <script src="./js/jquery-1.12.4.min.js"></script>
   <script src="./js/template-web.js"></script>
-
+  <script type="text/html" id="lastedTpl">
+  {{each data}}
+    <div class="common_news_list">
+      <a href="#" class="list_pic"><img src={{$value.cover}} alt=""></a>
+      <h4><a href="article.html?id={{$value.id}}" >{{$value.title}}</a></h4>
+      <p>{{$value.content}}
+      </p>
+      <div class="new_info">
+        <span>标签：{{$value.category}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( {{$value.read}}
+          )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( {{$value.comments}} )</span>
+        <b>发布于 {{$value.data}}</b>
+      </div>
+    </div>
+  {{/each}}
+  
+  
+  </script>
+  <script src="./assets/index1.js"></script>
   <!-- index 代码 -->
   <script>
   </script>
