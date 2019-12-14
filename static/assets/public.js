@@ -59,39 +59,20 @@ $.ajax({
 // 给搜索按钮注册点击事件
 $('.search_btn').on('click', function () {
     // 获取input框的val值
-    var key = $('.search_txt').val();
-    // console.log(key);
-    // 发送请求，文章搜索
-    $.ajax({
-        type: 'get',
-        url: 'http://localhost:8080/api/v1/index/search',
-        data:{
-            key:key
-        },
-        success: function (response) {
-            // console.log(response.data);
-            // location.href="/list.html";
-            var listTpl=`
-            {{each data}}
-            <div class="common_news_list">
-            <a href="#" class="list_pic"><img src="{{$value.cover}}" alt=""></a>
-            <h4><a href="#">{{$value.title}}</a></h4>
-            <p>{{$value.content}}</p>
-            <div class="new_info">
-              <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( {{$value.read}}
-                )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论({{$value.comments}} )</span>
-              <b>发布于 {{$value.date}}</b>
-            </div>
-          </div>    
-          {{/each}}
-            `;
-            var html = template.render(listTpl, { data: response.data.data });
-            // console.log(html);
-            
-            $('#lsitSearchBox').html(html)
-    
-        }
-    });
+    var keys = $('.search_txt').val();
+    // console.log(keys);
+    // location.href='/search.html?key='+keys;
+    // $.ajax({
+    //     type:'get',
+    //     url:'http://localhost:8080/api/v1/index/search',
+    //     data:{
+    //         key:keys
+    //     },
+    //     success:function(){
+    //         location.href="/search.html?key="+keys
+    //     }
+
+    // })
 
 });
 
@@ -103,10 +84,29 @@ function logDate(data){
         type: 'get',
         url: 'http://localhost:8080/api/v1/index/latest_comment',
         success:function(response){
-            console.log(response.data.date);
+           // console.log(response.data.date);
             
         }
     })
 }
+
+
+
+// 封装一个函数，用于从浏览器的地址栏中获取指定的参数
+function getUrlParams(name) {
+    var paramsAry = location.search.substr(1).split('&');
+    // 循环数据
+    for (var i = 0; i < paramsAry.length; i++) {
+        var tmp = paramsAry[i].split('=');
+        if (tmp[0] == name) {
+            return tmp[1];
+        }
+    }
+    // 参数不存在，则返回-1
+    return -1;
+}
+
+
+
 
 
