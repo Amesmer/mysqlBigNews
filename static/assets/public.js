@@ -92,7 +92,7 @@ $.ajax({
         // console.log(response);
         var level_twoTpl = `
         {{each data}}
-        <li><a href="/list.htmlx " data-id={{$value.id}}>{{$value.name}}</a></li>
+        <li><a href="http://localhost:8080/list.html?type={{$value.id}}" data-id={{$value.id}}>{{$value.name}}</a></li>
         {{/each}}
         `;
         var html = template.render(level_twoTpl, { data: response.data });
@@ -100,7 +100,7 @@ $.ajax({
 
         var left_menuTpl = `
         {{each data}}
-        <li><a href="/list.html" data-id={{$value.id}}>{{$value.name}}</a></li>
+        <li><a href="http://localhost:8080/list.html?type={{$value.id}}" data-id={{$value.id}}>{{$value.name}}</a></li>
         {{/each}}
         `;
         var html = template.render(left_menuTpl, { data: response.data });
